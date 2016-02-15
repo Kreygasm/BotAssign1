@@ -164,7 +164,7 @@ nav ul li:hover > ul{
 #assemblyRightContainer {
     position: absolute;
     left: 65%;
-    bottom: 40%;
+    bottom: 30%;
 }
 
 .buttonAssemble:hover {
@@ -177,6 +177,12 @@ nav ul li:hover > ul{
     backgroud-color: orange;
     border-radius: 4px;
     font-size:30px !important;
+}
+
+#previewH5{
+    padding: 15px;
+    font-size:30px !important;
+    text-align: center;
 }
 
 /**------ CSS FOR THE FOOTER FIELD ------******************************************************************/
