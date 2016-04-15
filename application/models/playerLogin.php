@@ -30,4 +30,10 @@ class playerLogin extends MY_Model {
         $query = $this->db->query('SELECT Player FROM players');
         return $query->result();
     }
+	
+	public function avatarGet($player){
+		$query = $this->db->query('SELECT avatar FROM players WHERE Player ="'.$player.'"');
+		$ret = $query->row();
+		return $ret->avatar;
+	}
 }

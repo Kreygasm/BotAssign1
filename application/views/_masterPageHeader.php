@@ -8,6 +8,8 @@
         </td>
         <td>
             {welcomeMsg}
+			<br/>
+			{avatarImg}
             <form name='loginForm' id='loginForm' method='POST'>
                 <br/>
                 <label for='username' style='display:{loginForm}'>Username: </label>    

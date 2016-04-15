@@ -50,8 +50,9 @@ class Application extends CI_Controller {
             if (array_search($username, $player) !== FALSE) {
                 // username in table   
                 //array('username'=>$username) creates an array in the session
-                //with a keyfield of username and it's value is the var $username
-                $this->session->set_userdata(array('username' => $username));
+				//with a keyfield of username and it's value is the var $username
+				$this->session->set_userdata(array('username' => $username));
+				//gets the player's avatar image
             } else {
                 // username not in table
                 $this->data['welcomeMsg'] = 'Please Enter a Username';
@@ -63,12 +64,16 @@ class Application extends CI_Controller {
 
         //this condition checks to see if the user is logged in. 
         if ($this->session->userdata('username')) {
-            $this->data['welcomeMsg'] = 'Welcome ' . $this->session->userdata('username');
-            $this->data['login'] = 'Logout'; //if logged in, the button value would be changed to logout
+			$avatarImage = $this->playerLogin->avatarGet($this->session->userdata('username'));
+            if($avatarImage == null){ $avatarImage = 'null';}
+			$this->data['welcomeMsg'] = 'Welcome ' . $this->session->userdata('username');
+            $this->data['avatarImg'] = '<img id="playerAvatar" src ="../../assets/avatars/'.$avatarImage.'.png" alt = "avatar"/>';
+			$this->data['login'] = 'Logout'; //if logged in, the button value would be changed to logout
             $this->data['loginForm'] = 'none'; //if signed in, the prompt for username is not displayed
             $this->data['loginDo'] = 'logout'; //button value would be the case of logout
         } else {
             $this->data['welcomeMsg'] = 'Please Enter a Username';
+			$this->data['avatarImg'] = '';
             $this->data['login'] = 'Login'; //if not logged in, the button value would be changed to login
             $this->data['loginForm'] = 'inline'; //if not signed in, the prompt for username is displayed
             $this->data['loginDo'] = 'login'; //button value would be the case of logging in
