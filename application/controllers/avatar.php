@@ -9,11 +9,12 @@ class avatar extends Application
 		$this->load->helper(array('form', 'url'));
 	}
 
-	function index()
+	public function index()
 	{
-		$this->load->view('avatarForm', array('error' => ' ' ));
+		$this->data['pageBody'] = 'avatarForm';
+		$this->render();
 	}
-
+	
 	function do_upload()
 	{
 		$config['upload_path'] = './assets/avatars/';
@@ -26,15 +27,15 @@ class avatar extends Application
 
 		if ( ! $this->upload->do_upload())
 		{
-			$error = array('error' => $this->upload->display_errors());
-
-			$this->load->view('avatarForm', $error);
+			echo "there was a problem uploading the image, try another one.";
+		
 		}
 		else
 		{
-			$data = array('upload_data' => $this->upload->data());
-
-			$this->load->view('avatarSuccess', $data);
+			$avatarFileName = $_FILES['userfile']['name'];
+			$pathInfo = pathinfo($avatarFileName);
+			echo "Succesful upload!";
+			echo $pathInfo['filename'];
 		}
 	}
 }
